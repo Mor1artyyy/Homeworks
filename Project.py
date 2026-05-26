@@ -6,23 +6,23 @@ np.random.seed(42)
 
 n_students = 30
 
-kr1 = np.random.randint(1, 100,  n_students)
-kr2 = np.random.randint(1, 100, n_students)
-kr3 = np.random.randint(1, 100, n_students)
+kr1 = np.random.randint(2, 5,  n_students)
+kr2 = np.random.randint(2, 5, n_students)
+kr3 = np.random.randint(2, 5, n_students)
 
 real_final = (kr1 + kr2 + kr3) / 3 + np.random.normal(0, 3, n_students)
-real_final = np.clip(real_final, 0, 100)
+real_final = np.clip(real_final, 2, 5)
 
 predicted_final = (kr1 + kr2 + kr3) / 3
 
 df = pd.DataFrame({
-    "Ученик: " : range(1, n_students + 1),
-    "КР 1: " : kr1,
-    "КР 2: " : kr2,
-    "КР 3: " : kr3,
-    "Реальный итог: " : np.round(real_final, 2),
-    "Прогноз (скользящая средняя): " : np.round(predicted_final, 2),
-    "Ошибка прогноза: " : np.round(real_final - predicted_final, 2)
+    "Ученик" : range(1, n_students + 1),
+    "КР 1:" : kr1,
+    "КР 2:" : kr2,
+    "КР 3:" : kr3,
+    "Реальный итог" : np.round(real_final, 2),
+    "Прогноз (скользящая средняя)" : np.round(predicted_final, 2),
+    "Ошибка прогноза" : np.round(real_final - predicted_final, 2)
 })
 print("=" * 70)
 print("Таблица результатов прогнозирования итогового балла по курсу БДЖ:")
@@ -31,7 +31,7 @@ print(df.to_string(index=False))
 
 plt.figure(figsize=(10, 6))
 plt.plot(df['Ученик'], df['Реальный итог'], 'o-', label='Реальный итоговый балл', color='blue')
-plt.plot(df['Ученик'], df['Прогноз (скольз. средняя)'], 's--', label='Прогноз (скользящая средняя)', color='red')
+plt.plot(df['Ученик'], df['Прогноз (скользящая средняя)'], 's--', label='Прогноз (скользящая средняя)', color='red')
 plt.xlabel('Номер ученика')
 plt.ylabel('Баллы')
 plt.title('Сравнение реальных и прогнозных итоговых баллов (БЖД)')
