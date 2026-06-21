@@ -9,15 +9,15 @@ np.random.seed(42)
 n_students = 30
 
 # Генерация оценок за пять контрольных работ (0-100 баллов)
-kr1 = np.random.randint(2, 5, n_students)
-kr2 = np.random.randint(2, 5, n_students)
-kr3 = np.random.randint(2, 5, n_students)
-kr4 = np.random.randint(2, 5, n_students)   # не влияет на прогноз
-kr5 = np.random.randint(2, 5, n_students)   # не влияет на прогноз
+kr1 = np.random.randint(2, 6, n_students)
+kr2 = np.random.randint(2, 6, n_students)
+kr3 = np.random.randint(2, 6, n_students)
+kr4 = np.random.randint(2, 6, n_students)   # не влияет на прогноз
+kr5 = np.random.randint(2, 6, n_students)   # не влияет на прогноз
 
-# Реальный итоговый балл: зависит от ВСЕХ пяти КР (среднее + шум)
-real_final = (kr1 + kr2 + kr3 + kr4 + kr5) / 5 + np.random.normal(0, 3, n_students)
-real_final = np.clip(real_final, 2, 5)
+# Реальный итоговый балл: зависит от ВСЕХ пяти КР
+real_final = (kr1 + kr2 + kr3 + kr4 + kr5) / 5
+real_final = np.clip(real_final, 2, 6)
 
 # Прогноз методом скользящей средней ТОЛЬКО по первым трём КР
 predicted_final = (kr1 + kr2 + kr3) / 3
